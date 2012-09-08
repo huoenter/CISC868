@@ -5,8 +5,7 @@
 	(cond ((null right) left)
 		  ((equal aa (car right)) (append left struct (meld-helper struct aa (list aa) (cdr right ))))
 		  ((atom (car right)) (meld-helper struct aa (append left (list (car right))) (cdr right))) 
-		  ((listp (car right)) (append left (list (meld-helper struct aa () (car right))) (meld-helper struct aa () (cdr right))))
-		  (t '(me))))
+		  (t (append left (list (meld-helper struct aa () (car right))) (meld-helper struct aa () (cdr right))))))
 
 (defun meld (struct aa lst)
 	(meld-helper struct aa () lst))
