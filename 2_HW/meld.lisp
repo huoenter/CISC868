@@ -1,10 +1,12 @@
 #!/usr/bin/sbcl --script
 
 (defun meld-helper (struct aa left right)
+;	(format t "~A   ~A~%" left right)
 	(cond ((null right) left)
-		  ((equal aa (car right)) (append left struct right))
-		  ((atom (car right)) (meld-helper struct aa (append left (list (car right))) (cdr right)))
-		  (t (append left (meld-helper struct aa () (car right)) (cdr right)))))
+		  ((equal aa (car right)) (append left struct (meld-helper struct aa (list aa) (cdr right ))))
+		  ((atom (car right)) (meld-helper struct aa (append left (list (car right))) (cdr right))) 
+		  ((listp (car right)) (append left (list (meld-helper struct aa () (car right))) (meld-helper struct aa () (cdr right))))
+		  (t '(me))))
 
 (defun meld (struct aa lst)
 	(meld-helper struct aa () lst))
