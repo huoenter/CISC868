@@ -1,0 +1,532 @@
+Script started on Mon Sep 24 23:12:09 2012
+strauss.udel.edu% lisp
+;;; Liquid Common Lisp / SPARC Solaris,  Version: 5.0.6, ANSI packages
+;;; Development Environment (DBCS),  Release Date: Sep 30, 1998
+;;; Copyright (C) 1985-1997 Harlequin Group plc.  All rights reserved.
+;;; 
+;;; Common LispWorks: The Common Lisp Programming Environment
+;;; Version 1.0.0,  Release Date:  1 February 1997.
+;;; Copyright (C) 1997 The Harlequin Group Limited.  All rights reserved.
+;;; 
+;;; This software product contains confidential and trade secret information
+;;; belonging to Harlequin.  It may not be copied for any reason other than
+;;; for archival and backup purposes.
+;;;
+;;; This software is subject to the following Restricted Rights legend:
+;;;  "Use,  duplication or disclosure by the United States Government is
+;;;   subject to restrictions as set forth in (i) FAR 52.227-14 Alt III,
+;;;   (ii) FAR 52.227-19, (iii) DFAR 252.227-7013(c)(1)(ii) or (iv) the
+;;;   accompanying license agreement, as applicable.  For purposes of the
+;;;   FAR, this Software shall be deemed 'unpublished' and licensed with
+;;;   disclosure prohibitions, rights reserved under the copyright laws of
+;;;   the United States.   Harlequin Incorporated, One Cambridge Center,
+;;;   Cambridge, Massachusetts  02142."
+;;;
+;;; Liquid Common Lisp is a trademark of The Harlequin Group plc.
+;;; Other brand or product names are trademarks or registered trademarks of 
+;;; their respective holders.
+
+;;; Loading source file "/opt/lib/liquid_common_lisp_5.0/solaris/lcl/5-0/config/siteinit.lisp"
+;;; Loading source file "/home/usra/04/01264/lisp-init.lisp"
+;;; Warning: File "/home/usra/04/01264/lisp-init.lisp" does not begin with IN-PACKAGE.
+;;;          Loading into package "COMMON-LISP-USER".
+
+CL-USER 1 > (load "Testcases1-12-grad.lisp")
+;;; Loading source file "Testcases1-12-grad.lisp"
+;;; Warning: File "Testcases1-12-grad.lisp" does not begin with IN-PACKAGE.
+;;;          Loading into package "COMMON-LISP-USER".
+#P"/home/3170a/usra/04/01264/Testcases1-12-grad.lisp"
+
+CL-USER 2 > (load "allinone.lisp")
+;;; Loading source file "allinone.lisp"
+;;; Warning: File "allinone.lisp" does not begin with IN-PACKAGE.
+;;;          Loading into package "COMMON-LISP-USER".
+#P"/home/3170a/usra/04/01264/allinone.lisp"
+
+CL-USER 3 > (testing-grad)
+"These are the CS681 test cases"
+
+(COUNT-BETWEEN '(3 5 7 8 9)) 
+
+3 
+
+
+(COUNT-BETWEEN '(9 8 7 5 3)) 
+
+3 
+
+
+(COUNT-BETWEEN '(2 4 6 18 12 7 14 17 20 32 2)) 
+
+6 
+
+
+(BETWEEN '(3 5 7 8 9)) 
+
+(5 7 8) 
+
+
+(BETWEEN '(9 8 7 5 3)) 
+
+(8 7 5) 
+
+
+(BETWEEN '(2 4 6 18 12 7 14 17 20 32 2)) 
+
+(4 6 12 14 17 20) 
+
+
+(INFIX '(* 4 5)) 
+
+(4 * 5) 
+
+
+(INFIX '(/ (* 3 5) (+ 2 4))) 
+
+((3 * 5) / (2 + 4)) 
+
+
+(INFIX '(* (+ (* (/ 4 5) 3) (* 2 (+ 3 4)))
+           (/ 4 (* (+ (* 4 6) (* 1 3)) (/ 6 7))))) 
+
+((((4 / 5) * 3) + (2 * (3 + 4))) * (4 / (((4 * 6) + (1 * 3)) * (6 / 7)))) 
+
+
+(REP-SEQ '(3)) 
+
+((3 3 3)) 
+
+
+(REP-SEQ '(4 2 4 6)) 
+
+((4 4 4 4) (2 2) (4 4 4 4) (6 6 6 6 6 6)) 
+
+
+(MELD '(6 4 3) 'AA '(4 AA 2)) 
+
+(4 6 4 3 AA 2) 
+
+
+(MELD '(6 (9)) 'B '(5 B 7)) 
+
+(5 6 (9) B 7) 
+
+
+(MELD '((7 8)) 'C '(C G F)) 
+
+((7 8) C G F) 
+
+
+(MELD '(4 A (C)) 3 '((A B) 2 (4 6 (3)) (7) 3 (3 8))) 
+
+((A B) 2 (4 6 (4 A (C) 3)) (7) 4 A (C) 3 (4 A (C) 3 8)) 
+
+
+(MELD '((5 (7 2)) 3) 5 '((4 2 (6) ((3 7 (8 ((9) 5 3) 5 (6 5 2))))))) 
+
+((4 2 (6) ((3 7 (8 ((9) (5 (7 2)) 3 5 3) (5 (7 2)) 3 5 (6 (5 (7 2)) 3 5 2)))))) 
+
+
+(MELD '(4 6 7) 3 '(4 6 (2 4) (((3) 7)) (3 5 7) 3 6)) 
+
+(4 6 (2 4) (((4 6 7 3) 7)) (4 6 7 3 5 7) 4 6 7 3 6) 
+
+
+(SUBTREE-GEQ 22
+             '(23 (4 (2 NIL NIL) (8 (6 NIL NIL) NIL))
+               (55 (29 (26 NIL NIL) NIL)
+                (60 (58 NIL NIL) (78 (75 NIL NIL) (88 NIL NIL)))))) 
+
+(23 26 29 55 58 60 75 78 88) 
+
+
+(SUBTREE-GEQ 3
+             '(23 (4 (2 NIL NIL) (8 (6 NIL NIL) NIL))
+               (55 (29 (26 NIL NIL) NIL)
+                (60 (58 NIL NIL) (78 (75 NIL NIL) (88 NIL NIL)))))) 
+
+(4 6 8 23 26 29 55 58 60 75 78 88) 
+
+
+(SUBTREE-GEQ 25
+             '(23 (4 (2 NIL NIL) (8 (6 NIL NIL) NIL))
+               (55 (29 (26 NIL NIL) NIL)
+                (60 (58 NIL NIL) (78 (75 NIL NIL) (88 NIL NIL)))))) 
+
+(26 29 55 58 60 75 78 88) 
+
+
+(SUBTREE-GEQ 17
+             '(67
+               (55 (49 (23 (15 NIL NIL) (47 NIL NIL)) (53 NIL (54 NIL NIL)))
+                (58 NIL NIL))
+               (75 (70 NIL (72 NIL NIL)) (88 NIL (90 NIL NIL))))) 
+
+(23 47 49 53 54 55 58 67 70 72 75 88 90) 
+
+
+(SUBTREE-GEQ 50
+             '(67
+               (55 (49 (23 (15 NIL NIL) (47 NIL NIL)) (53 NIL (54 NIL NIL)))
+                (58 NIL NIL))
+               (75 (70 NIL (72 NIL NIL)) (88 NIL (90 NIL NIL))))) 
+
+(53 54 55 58 67 70 72 75 88 90) 
+
+
+(SUBTREE-GEQ 71
+             '(67
+               (55 (49 (23 (15 NIL NIL) (47 NIL NIL)) (53 NIL (54 NIL NIL)))
+                (58 NIL NIL))
+               (75 (70 NIL (72 NIL NIL)) (88 NIL (90 NIL NIL))))) 
+
+(72 75 88 90) 
+
+
+(SUBTREE-GEQ 25
+             '(67
+               (55 (49 (23 (15 NIL NIL) (47 NIL NIL)) (53 NIL (54 NIL NIL)))
+                (58 NIL NIL))
+               (75 (70 NIL (72 NIL NIL)) (88 NIL (90 NIL NIL))))) 
+
+(47 49 53 54 55 58 67 70 72 75 88 90) 
+
+
+(SIMPLIFYE '(X (3 1 4 *) (5 1 *) 8 ((X Y Z *) 0 *) +)) 
+
+(X (3 4 *) 5 8 +) 
+
+
+(SIMPLIFYE '((((9 0 *) (4 6 8 +) (4 6 2 *) +) (7 2 (8 (0 9 8 *) +) 7 *)
+              ((4 0 *) (8 0 6 *) (7 2 0 6 4 *) +) (3 2 +) *)
+             ((8 0 6 *) ((7 0 7 *) (4 0 *) +) ((0 7 2 *) (4 6 *) *) +) +)) 
+
+((((4 6 8 +) (4 6 2 *) +) (7 2 8 7 *) + (3 2 +) *) (+) +) 
+
+
+(SIMPLIFYE '((((9 0 *) (4 6 8 +) (4 6 2 *) +) (7 2 ((9 0 1 *) (1 9 8 *) +) 7 *)
+              ((4 (1 0 0 +) *) ((3 1 *) ((8 0 *) (1 0 0 +) +) *) +) *)
+             (8 0 6 *) ((1 1 (1 0 0 +) *) (8 0 1 *) (1 5 0 1 *) *) 1
+             ((1 (8 0 +) *) ((1 4 1 1 *) (0 1 +) *) +) (3 2 +)
+             ((8 0 6 *) ((7 0 7 *) (4 0 *) +) ((0 7 2 *) (4 6 *) *) +) +)) 
+
+((((4 6 8 +) (4 6 2 *) +) (7 2 (9 8 *) 7 *) ((4 1 *) (3 (1 +) *) +) *) 1
+ ((8 +) (4 1 *) +) (3 2 +) (+) +) 
+
+
+(SIMPLIFYE '(((5 1 /) ((0 6 /) 7 /) *) (6 3 /) ((1 (4 1 /) *) 1 /) +)) 
+
+((6 3 /) 4 +) 
+
+
+(DERIVATIVE '((3 X *) (X 4 %) +)) 
+
+(((3 1 *) (X 0 *) +) (4 (X 3 %) *) +) 
+
+
+(DERIVATIVE '(((4 (X 3 %) *) ((X 2 +) -1 %) *) 5 +)) 
+
+((((4 (X 3 %) *) (-1 ((X 2 +) -2 %) *) *)
+  (((X 2 +) -1 %) ((4 (3 (X 2 %) *) *) ((X 3 %) 0 *) +) *) +)
+ 0 +) 
+
+
+(DERIVATIVE '((8 X *) (((7 (X 3 %) *) (3 (X 4 %) *) *) 5 +) *)) 
+
+(((8 X *)
+  ((((7 (X 3 %) *) ((3 (4 (X 3 %) *) *) ((X 4 %) 0 *) +) *)
+    ((3 (X 4 %) *) ((7 (3 (X 2 %) *) *) ((X 3 %) 0 *) +) *) +)
+   0 +)
+  *)
+ ((((7 (X 3 %) *) (3 (X 4 %) *) *) 5 +) ((8 1 *) (X 0 *) +) *) +) 
+
+
+(DERIVATIVE '(((4 (X 3 %) *) (X 2 %) +) -3 %)) 
+
+(-3 (((4 (X 3 %) *) (X 2 %) +) -4 %) *) 
+
+
+(INHERIT-GET 'CANARY 'FEET) 
+
+2 
+
+
+(INHERIT-GET 'CAT 'FEET) 
+
+4 
+
+
+(INHERIT-GET 'CANARY 'CHARACTER) 
+
+ALIVE 
+
+
+(INHERIT-GET 'ROSE 'CHARACTER) 
+
+ALIVE 
+
+
+(INHERIT-GET 'TABLE 'CHARACTER) 
+
+DEAD 
+
+
+(INHERIT-GET 'CAT 'TEMPERATURE) 
+
+WARM-BLOODED 
+
+
+(INHERIT-GET 'SNAKE 'TEMPERATURE) 
+
+COLD-BLOODED 
+
+
+(INHERIT-GET 'CANARY 'TEMPERATURE) 
+
+NIL 
+
+
+(FULL-INHERIT-GET 'HOUSE 'COST) 
+
+MODERATE 
+
+
+(FULL-INHERIT-GET 'HOUSE 'CHARACTER) 
+
+TANGIBLE 
+
+
+(FULL-INHERIT-GET 'HOUSE 'CLIMATE) 
+
+DRY 
+
+
+(FULL-INHERIT-GET 'HOUSE 'OWNER) 
+
+SELF 
+
+
+(FULL-INHERIT-GET 'HOTEL 'COST) 
+
+HIGH 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'COST) 
+
+NIL 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'AVAILABILITY) 
+
+PUBLIC 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'STATE-RATE) 
+
+5 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'PEOPLE) 
+
+MANY 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'CHARACTER) 
+
+TANGIBLE 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'CLIMATE) 
+
+DRY 
+
+
+(FULL-INHERIT-GET 'APARTMENT-BUILDING 'GOVERNMENT-PRODUCT) 
+
+FINANCIAL 
+
+(NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL
+ NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL
+ NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL NIL)
+
+CL-USER 4 > (quit)
+strauss.udel.edu% cat allinone.lisp
+;;;;
+(defun between-helper (f s th)
+        (> (* (- f s) (- s th)) 0))
+
+(defun between (lst)
+        (cond ((null (cddr lst)) ())
+                  ((between-helper (car lst) (cadr lst) (caddr lst)) (cons (cadr lst) (between (cdr lst))))
+                  (t (between (cdr lst)))))
+
+
+;;;;
+(defun count-between-helper (f s th)
+        (> (* (- f s) (- s th)) 0))
+
+(defun count-between (lst)
+        (cond ((null (cddr lst)) 0)
+                  ((count-between-helper (car lst) (cadr lst) (caddr lst)) (+ 1 (count-between (cdr lst))))
+                  (t (count-between (cdr lst)))))
+
+
+;;;;
+
+
+(defun emit (aa)
+        (cond ((equal aa 'X) 1)
+                  (t 0)))
+
+(defun derivative-helper (expr)
+        (cond ((atom expr) (emit expr))
+                  ((equal (last expr) '(+)) (list (derivative-helper (car expr)) (derivative-helper (cadr expr)) '+))
+                  ((equal (last expr) '(*)) 
+                        (list (list (car expr) (derivative-helper (cadr expr)) '*) (list (cadr expr) (derivative-helper (car expr)) '*) '+))
+                  ((equal (last expr) '(%))
+                        (list (cadr expr) (list (car expr) (- (cadr expr) 1) '%) '*))
+                  (t '(err))))
+
+(defun derivative (expr)
+        ;There is a bit of problem with simplifye. So just put derivative here to show that it itself is right...
+        ;(simplifye (derivative-helper expr)))
+        (derivative-helper expr))
+
+;;;;
+
+(defun full-inherit-get-helper (objects property)
+        (let ((ans (get (car objects) property)))
+        (cond
+        ((null objects) nil)
+        ((equal ans nil) (full-inherit-get-helper (append (cdr objects) (get (car objects) 'isa)) property))
+        (t ans))))
+
+        
+
+(defun full-inherit-get (object property)
+        (full-inherit-get-helper (list object) property ))
+;       (t (mapcar #'(lambda (x) (full-inherit-get x property)) (get object 'isa))))))
+
+
+
+;;;;
+
+(defun infix (expr)
+        (cond ((atom expr) expr) 
+                  (t (list (infix (cadr expr)) (car expr) (infix (caddr expr))))))
+
+;;;;
+
+(defun inherit-get (object property)
+        (let ((p (get object property)))
+        (cond
+        ((equal object nil) nil)
+        ((equal p nil) (inherit-get (get object 'isa) property))
+        (t p))))
+
+;;;;
+
+(defun meld-helper (struct aa left right)
+;       (format t "~A   ~A~%" left right)
+        (cond ((null right) left)
+                  ((equal aa (car right)) (append left struct (meld-helper struct aa (list aa) (cdr right ))))
+                  ((atom (car right)) (meld-helper struct aa (append left (list (car right))) (cdr right))) 
+                  (t (append left (list (meld-helper struct aa () (car right))) (meld-helper struct aa () (cdr right))))))
+
+(defun meld (struct aa lst)
+        (meld-helper struct aa () lst))
+
+;;;;
+
+(defun rep-seq-helper (m n)
+        (cond ((= 0 n) ())
+                  (t (cons m (rep-seq-helper m (- n 1))))))
+
+(defun rep-seq (lst)
+        (cond ((null lst) ())
+                  (t (cons (rep-seq-helper (car lst) (car lst)) (rep-seq (cdr lst))))))
+
+
+;;;;
+(defun contains(n expr)
+        (cond
+        ((null expr) nil)
+        ((and (atom expr) (equal expr n)) t)
+        ((equal (car expr) n) t)
+        (t (contains n (cdr expr)))))
+
+(defun depth (expr)
+        (cond
+        (t 10)))
+        
+(defun simplify1 (expr)
+        (cond 
+        ((null expr) nil)
+        ((atom expr) expr)
+        ((equal (car (last expr)) '*) 
+                (cond
+                ((contains 0 expr) 0)
+                ((equal (simplify1 (car expr)) '1) (simplify1 (cdr expr)))
+                (t (cons (simplify1 (car expr)) (simplify1 (cdr expr))))))
+        ((equal (car (last expr)) '+) 
+                (cond
+                ((equal (simplify1 (car expr)) '0) (simplify1 (cdr expr)))
+                (t (cons (simplify1 (car expr)) (simplify1 (cdr expr))))))
+        ((equal (car (last expr)) '/)
+                (cond
+                ((equal (simplify1 (car expr)) 0) 0)
+                ((equal (simplify1 (cadr expr)) 1) (simplify1 (car expr)))
+                (t (list (simplify1 (car expr)) (simplify1 (cadr expr)) (car (last expr))))))
+        ((equal (car (last expr)) '%)
+                (cond
+                ((equal (simplify1 (cadr expr)) 1) (simplify1 (car expr)))
+                ((equal (simplify1 (cadr expr)) 0) 1)
+                (t (list (simplify1 (car expr)) (simplify1 (cadr expr)) (car (last expr))))))))
+                
+
+
+(defun simplify2 (expr)
+        (cond
+        ((null expr) nil)
+        ((and (atom expr) (equal expr 0)) nil)
+        ((atom expr) expr)
+        ((null (simplify2 (car expr))) (simplify2 (cdr expr)))
+        (t (cons (simplify2 (car expr)) (simplify2 (cdr expr))))))
+
+(defun simplify3 (expr)
+        (cond
+        ((atom expr) expr)
+        ((null (cddr expr)) (car expr))
+        ((null (cdr expr)) nil)
+        (t (mapcar #'(lambda (x) (simplify3 x)) expr))))
+
+(defun simplify4 (expr n)
+        (cond
+        ((= n 0) expr)
+        (t (simplify4 (simplify1 expr) (- n 1)))))
+
+(defun simplify5 (expr)
+        (cond
+        ((null expr) nil)
+        ((atom expr) expr)
+        (t (list (simplify4 (car expr)) (simplify4 (cdr expr))))))
+
+
+(defun simplifye (expr)
+        (simplify3 (simplify2 (simplify4 expr (depth expr)))))
+        ;(simplify3 (simplify2 (simplify4 expr))))
+        ;(simplify1 expr))
+
+
+;;;;
+
+(defun visit (int1 root)
+        (cond ((>= root int1) (list root))
+                  (t ())))
+
+(defun subtree-geq (int1 tree)
+        (cond ((null tree) ())
+                  (t (append (subtree-geq int1 (cadr tree)) (visit int1 (car tree)) (subtree-geq int1 (caddr tree))))))
+strauss.udel.edu% exit
+strauss.udel.edu% 
+script done on Mon Sep 24 23:13:02 2012
